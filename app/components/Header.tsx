@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { links } from "@/lib/data";
 import Link from "next/link";
+import { useState } from "react";
+import clsx from "clsx";
 
 const Header = () => {
+  const [active, setActive] = useState("Home");
   return (
     <header className="z-[999] relative">
       <motion.div
@@ -18,15 +21,29 @@ const Header = () => {
           {links.map((link) => (
             <motion.li
               key={link.hash}
-              className="h-[3/4] flex items-center justify-center"
+              className="h-[3/4] flex items-center justify-center relative"
               initial={{ y: -100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
             >
               <Link
                 href={link.hash}
-                className="w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition"
+                onClick={() => {
+                  setActive(link.name);
+                }}
+                className={clsx(
+                  "w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition",
+                  { "text-gray-950": active === link.name }
+                )}
               >
                 {link.name}
+
+                {link.name === active && (
+                  <motion.span
+                    className="bg-gray-100 rounded-full absolute inset-0 -z-10"
+                    layoutId="active"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  ></motion.span>
+                )}
               </Link>
             </motion.li>
           ))}
@@ -61,4 +78,10 @@ initial={{ y: -100, x: "-50%", opacity: 0 }}
 animate={{ y: 0, x: "-50%", opacity: 1 }}
 
 After writing this you can remove the -translate-x-1/2 from className.
+
+When you click, say About link in the nav bar, you will be scrolled down to the about section. We're achieving this by setting an id property to each section, which is same as the hash value for that section (see data.ts to see the hash value for each section). But when we click on about, we'll be scrolled down to that section, but the section will be on top of the screen. To prevent this we can use scroll margin property. After setting a scroll margin the section will stay some distance below from the view port. 
+
+<span className="bg-gray-100 rounded-full absolute inset-0"></span>
+
+inset-0 will set 0 position for all- top, bottom, left and right.
 */

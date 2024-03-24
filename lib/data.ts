@@ -5,6 +5,10 @@ import { LuGraduationCap } from "react-icons/lu";
 import corpcommentImg from "@/public/corpcomment.png";
 import rmtdevImg from "@/public/rmtdev.png";
 import wordanalyticsImg from "@/public/wordanalytics.png";
+import portfolio from "@/assets/portfolio.jpeg";
+import ecom from "@/assets/ecom.jpeg";
+import travelapp from "@/assets/travelapp.jpeg";
+import reduxcart from "@/assets/reduxcart.jpeg";
 
 export const links = [
   {
@@ -35,20 +39,20 @@ export const links = [
 
 export const experiencesData = [
   {
-    title: "Software Deployment Specialist",
-    location: "NCR Atleos | Hyderabad, Telangana",
+    title: "Full-Stack Web Development Course",
+    location: "Online",
     description:
-      "I effectively utilized the Digital Connected Services tool to remotely deploy software on ATMs. Collaborating with the Endpoint Security Team, I ensured secure post-installation operations. I verified software deployment success, addressing issues promptly, and communicated seamlessly with cross-functional teams for essential activities.",
+      "Completed one year long advanced certificate course in full-stack web development from Great Learning",
     icon: React.createElement(LuGraduationCap),
-    date: "2021-Present",
+    date: "2022",
   },
   {
-    title: "Front-End Developer",
-    location: "Orlando, FL",
+    title: "Software Distribution Specialist",
+    location: "Hyderabad, India",
     description:
-      "I worked as a front-end developer for 2 years in 1 job and 1 year in another job. I also upskilled to the full stack.",
+      "As a Software Distribution Specialist, utilized tools for remote software deployment and management on ATMs, demonstrating technical proficiency. Collaborated with cross-functional teams, demonstrating effective communication and coordination skills. Maintained detailed records and provided comprehensive reports, showcasing documentation and reporting abilities",
     icon: React.createElement(CgWorkAlt),
-    date: "2019 - 2021",
+    date: "2021 - Present",
   },
   {
     title: "Full-Stack Developer",
@@ -62,25 +66,40 @@ export const experiencesData = [
 
 export const projectsData = [
   {
-    title: "CorpComment",
+    title: "Full-Stack E-Commerce App",
     description:
-      "I worked as a full-stack developer on this startup project for 2 years. Users can give public feedback to companies.",
-    tags: ["React", "Next.js", "MongoDB", "Tailwind", "Prisma"],
-    imageUrl: corpcommentImg,
+      "Built a full-stack e-commerce application using modern technologies with user authentication and a fully functional shopping cart",
+    tags: [
+      "React",
+      "Next.js",
+      "MongoDB",
+      "Tailwind CSS",
+      "Prisma",
+      "DaisyUI",
+      "Zod",
+    ],
+    imageUrl: ecom,
   },
   {
-    title: "rmtDev",
+    title: "Personal Portfolio",
     description:
-      "Job board for remote developer jobs. I was the front-end developer. It has features like filtering, sorting and pagination.",
-    tags: ["React", "TypeScript", "Next.js", "Tailwind", "Redux"],
-    imageUrl: rmtdevImg,
+      "Designed and developed a personal portfolio website. Implemented a user-friendly contact form with email and text message options using Next.js server actions.",
+    tags: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Framer-Motion"],
+    imageUrl: portfolio,
   },
   {
-    title: "Word Analytics",
+    title: "Travel App Landing Page",
     description:
-      "A public web app for quick analytics on text. It shows word count, character count and social media post limits.",
-    tags: ["React", "Next.js", "SQL", "Tailwind", "Framer"],
-    imageUrl: wordanalyticsImg,
+      "Designed and developed a fully responsive landing page for a travel website using modern web development technologies. ",
+    tags: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
+    imageUrl: travelapp,
+  },
+  {
+    title: "ShopIt - E-commerce Cart",
+    description:
+      "ShopIt is a single-page e-commerce shopping cart application built to demonstrate the practical implementation of Redux Toolkit for state management.",
+    tags: ["React", "Redux Toolkit", "Tailwind CSS"],
+    imageUrl: reduxcart,
   },
 ] as const;
 
@@ -91,10 +110,22 @@ export const skillsData = [
   "TypeScript",
   "React",
   "Next.js",
-  "Git",
-  "Tailwind",
-  "Prisma",
-  "MongoDB",
   "Redux",
+  "Tailwind",
+  "MongoDB",
+  "Prisma",
   "Framer Motion",
+  "Git",
 ] as const;
+
+// The "as const" after the array, will make the properties of the objects in the array, immutable.
+
+/*
+icon: React.createElement(CgWorkAlt),
+
+Notice why we had to write the above instead of 
+
+icon: <CgWorkAlt>
+
+This is because, we're in a ts file not a tsx file. If this was a tsx file, we could have chosen the later. 
+*/
