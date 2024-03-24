@@ -7,10 +7,22 @@ import "react-vertical-timeline-component/style.min.css";
 import SectionHeading from "./SectionHeading";
 import { experiencesData } from "@/lib/data";
 import React from "react";
+import { useActiveSectionContext } from "../context/active-section-context";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 const Experience = () => {
+  const { ref, inView } = useInView({ threshold: 0.75 });
+  const { setActiveSection } = useActiveSectionContext();
+
+  useEffect(() => {
+    if (inView) {
+      setActiveSection("Experience");
+    }
+  }, [inView, setActiveSection]);
+
   return (
-    <section id="experience" className="scroll-mt-28">
+    <section id="experience" ref={ref} className="mb-28 scroll-mt-28">
       <SectionHeading>My Experience</SectionHeading>
       <VerticalTimeline lineColor="">
         {experiencesData.map((item, index) => (

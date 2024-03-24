@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 import { links } from "@/lib/data";
 import Link from "next/link";
-import { useState } from "react";
 import clsx from "clsx";
+import { useActiveSectionContext } from "@/app/context/active-section-context";
 
 const Header = () => {
-  const [active, setActive] = useState("Home");
+  const { activeSection, setActiveSection } = useActiveSectionContext();
   return (
     <header className="z-[999] relative">
       <motion.div
@@ -28,19 +28,19 @@ const Header = () => {
               <Link
                 href={link.hash}
                 onClick={() => {
-                  setActive(link.name);
+                  setActiveSection(link.name);
                 }}
                 className={clsx(
                   "w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition",
-                  { "text-gray-950": active === link.name }
+                  { "text-gray-950": activeSection === link.name }
                 )}
               >
                 {link.name}
 
-                {link.name === active && (
+                {link.name === activeSection && (
                   <motion.span
-                    className="bg-gray-100 rounded-full absolute inset-0 -z-10"
-                    layoutId="active"
+                    className="bg-gray-200 rounded-full absolute inset-0 -z-10"
+                    layoutId="activeSection"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   ></motion.span>
                 )}
